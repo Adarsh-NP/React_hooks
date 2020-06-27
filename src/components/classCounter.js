@@ -5,14 +5,16 @@ class ClassCounter extends Component {
         super(props)
     
         this.state = {
-             count: 0
+             count: 0,
+             msg: ''
         }
     }
 
     onClick = () => {
         this.setState(prevState => ({
             count: prevState.count + 1,
-        }))
+            msg:  'incremented'
+        }), ()=>alert(this.state.msg + this.state.count)) //yayyy that's an achievement lmao, without the arrow function the alert shows prevState value
     }
     
     render() {
@@ -21,6 +23,7 @@ class ClassCounter extends Component {
             <div>
                 <button onClick={this.onClick}>CLick Me</button>
                 <h1>{count}</h1>
+                
             </div>
         )
     }
