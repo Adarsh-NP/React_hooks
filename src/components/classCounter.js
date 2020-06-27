@@ -14,14 +14,14 @@ class ClassCounter extends Component {
         this.setState(prevState => ({
             count: prevState.count + 1,
             msg:  'incremented'
-        }), ()=>alert(this.state.msg + this.state.count)) //yayyy that's an achievement lmao, without the arrow function the alert shows prevState value
+        }), ()=>alert(this.state.msg +"\n" + this.state.count)) //yayyy that's an achievement lmao, without the arrow function the alert shows prevState value
     }
     
     render() {
         const {count} = this.state
         return (
             <div>
-                <button onClick={this.onClick}>CLick Me</button>
+                <button onClick={this.onClick}>Click Me</button>
                 <h1>{count}</h1>
                 
             </div>
