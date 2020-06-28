@@ -11,6 +11,7 @@ const Slider = ({slides, height, width, autoplay}) => {
 
 
 
+
     const [state, setState] = useState({
         activeSlide: 0,
         translate: 0,
@@ -35,34 +36,40 @@ const Slider = ({slides, height, width, autoplay}) => {
     }
     }, [autoplay])
 
+
+
+
     const nextSlide = () => {
-        if(activeSlide === slides.length - 1){
-            return setState({
-                ...state,
-                translate: 0,
-                activeSlide: 0
-            })
-        }
-        setState(prevState => ({
+        if (activeSlide === slides.length - 1) {
+          return setState({
             ...state,
-            activeSlide : prevState.activeSlide + 1,
-            translate: (prevState.activeSlide + 1) * getWidth()
-        }))
-    }
-    const prevSlide = () => {
-        if(activeSlide === 0){
-            return setState({
-                ...state,
-                translate: (slides.length - 1)*getWidth(),
-                activeSlide: slides.length - 1
-            })
+            translate: 0,
+            activeSlide: 0
+          })
         }
-        setState(prevState => ({
+    
+        setState({
+          ...state,
+          activeSlide: activeSlide + 1,
+          translate: (activeSlide + 1) * getWidth()
+        })
+      }
+    
+      const prevSlide = () => {
+        if (activeSlide === 0) {
+          return setState({
             ...state,
-            activeSlide : prevState.activeSlide - 1,
-            translate: (prevState.activeSlide - 1) * getWidth()
-        }))
-    }
+            translate: (slides.length - 1) * getWidth(),
+            activeSlide: slides.length - 1
+          })
+        }
+    
+        setState({
+          ...state,
+          activeSlide: activeSlide - 1,
+          translate: (activeSlide - 1) * getWidth()
+        })
+      }
 
     return (
         <SliderMain height={height} width={width} slides={slides} autoplay={autoplay}>
