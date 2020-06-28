@@ -9,65 +9,114 @@ const Slider = ({slides, height, width, autoplay}) => {
 
     const getWidth = () => window.innerWidth
 
+    const firstSlide = slides[0]
+    const secondSlide = slides[1]
+    const lastSlide = slides[slides.length - 1]
 
 
     const [state, setState] = useState({
         activeSlide: 0,
-        translate: 0,
+        translate: getWidth(),
         transition: 0.4,
+        _slides: [lastSlide, firstSlide, secondSlide]
     })
 
-    const {activeSlide, translate, transition} = state
+    const {activeSlide, translate, transition, _slides} = state
 
     const autoPlayRef = useRef()
+    const transitionRef = useRef()
+    const resizeRef = useRef()
 
     useEffect(()=> {
         autoPlayRef.current = nextSlide
+        transitionRef.current = smoothTransition
+        resizeRef.current = handleResize
     })
 
+
+    const handleResize = () =>  {
+        setState({
+             ...state, 
+             translate: getWidth(), 
+             transition: 0 
+        })
+    }
+
+    const smoothTransition = () => {
+        let _slides = []
+    
+        // We're at the last slide.
+        if (activeSlide === slides.length - 1)
+          _slides = [slides[slides.length - 2], lastSlide, firstSlide]
+        // We're back at the first slide. Just reset to how it was on initial render
+        else if (activeSlide === 0) _slides = [lastSlide, firstSlide, secondSlide]
+        // Create an array of the previous last slide, and the next two slides that follow it.
+        else _slides = slides.slice(activeSlide - 1, activeSlide + 2)
+    
+        setState({
+          ...state,
+          _slides,
+          transition: 0,
+          translate: getWidth()
+        })
+      }
+    
+      useEffect(() => {
+        if (transition === 0) setState({ ...state, transition: 0.45 })
+      }, [transition])
+
     useEffect(() => {
-    const play = () => {
-      autoPlayRef.current()
-    }
-    if(autoplay !== (null || 0) ){
-        const interval = setInterval(play, autoplay*1000)
-        return () => clearInterval(interval)
-    }
+        const play = () => {
+        autoPlayRef.current()
+        }
+
+        const smooth = e => {
+            if (e.target.className.includes('sliderContent')) {
+              transitionRef.current()
+            }
+        }
+
+        const resize = () => {
+            resizeRef.current()
+        }
+        
+        let interval = null
+
+        const transitionEnd = window.addEventListener('transitionend', smooth)
+        const onResize = window.addEventListener('resize', resize)
+
+        if(autoplay !== (null || 0) ){
+            interval = setInterval(play, autoplay*1000)
+        }
+
+        return () => {
+            window.removeEventListener('transitionend', transitionEnd)
+            window.removeEventListener('resize', onResize)
+            if(autoplay !== (null || 0) ){
+                clearInterval(interval)
+            }
+        }
     }, [autoplay])
 
-    const nextSlide = () => {
-        if(activeSlide === slides.length - 1){
-            return setState({
-                ...state,
-                translate: 0,
-                activeSlide: 0
-            })
-        }
-        setState(prevState => ({
-            ...state,
-            activeSlide : prevState.activeSlide + 1,
-            translate: (prevState.activeSlide + 1) * getWidth()
-        }))
-    }
-    const prevSlide = () => {
-        if(activeSlide === 0){
-            return setState({
-                ...state,
-                translate: (slides.length - 1)*getWidth(),
-                activeSlide: slides.length - 1
-            })
-        }
-        setState(prevState => ({
-            ...state,
-            activeSlide : prevState.activeSlide - 1,
-            translate: (prevState.activeSlide - 1) * getWidth()
-        }))
-    }
+    const nextSlide = () =>
+    setState({
+      ...state,
+      translate: translate + getWidth(),
+      activeSlide: activeSlide === slides.length - 1 ? 0 : activeSlide + 1
+    })
+
+  const prevSlide = () =>
+    setState({
+      ...state,
+      translate: 0,
+      activeSlide: activeSlide === 0 ? slides.length - 1 : activeSlide - 1
+    })
+
 
     return (
         <SliderMain height={height} width={width} slides={slides} autoplay={autoplay}>
-            <SliderContent translate={translate} transition={transition} width={getWidth()*slides.length}>
-                {slides.map((slide, i) => (
+            <SliderContent translate={translate} transition={transition} width={getWidth()*_slides.length}>
+                {_slides.map((slide, i) => (
                     <Slide key={slide + i} content={slide}></Slide>
                 ))}
             </SliderContent>

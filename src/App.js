@@ -13,11 +13,11 @@ import Slider from './ReactSlider/Slider';
 
 function App() {
   const photos = [
-  'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80',
-  'https://images.unsplash.com/photo-1470341223622-1019832be824?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2288&q=80',
-  'https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2094&q=80',
-  'https://images.unsplash.com/photo-1534161308652-fdfcf10f62c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2174&q=80'
-  ]  
+  'https://parikramaengineering.com/wp-content/uploads/2019/05/get_in_touch_bg.jpg',
+  'https://www.myfirstcollege.com/wp-content/uploads/2019/04/PARI-BUILDING.jpg',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSUceVUmDp1G0GjHULbpZfLIEdKN4mGVSzZhA&usqp=CAU',
+  'https://images.jdmagicbox.com/comp/ahmednagar/y7/9999px241.x241.110104121919.p6y7/catalogue/vishwabharati-academy-s-college-of-engineering-jamkhed-road-ahmednagar-colleges-ll0t3yo.jpg'
+]  
   return (
     <div className="App">
       <Slider slides={photos} height='50vh' autoplay={0} /> 
