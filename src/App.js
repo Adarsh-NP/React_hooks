@@ -21,15 +21,6 @@ function App() {
   return (
     <div className="App">
       <Slider slides={photos} height='50vh' autoplay={0} /> 
-      {/* <IntervalCounter /> */}
-      {/* <MouseContainer /> */}
-      {/* <HookMounts /> */}
-      {/* <HookCounter1 /> */}
-      {/* <Hookcounter4 />
-      <Hookcounter3 />
-      <Hookcounte2 />
-      <ClassCounter />
-      <CounterHooks /> */}
     </div>
   );
 }
