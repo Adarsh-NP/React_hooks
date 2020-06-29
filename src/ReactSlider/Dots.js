@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const Dot = ({active}) => {
     return (
-        <Dotdiv active={active}>
+        <Dotdiv active={active} >
 
         </Dotdiv>
     )

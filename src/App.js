@@ -13,14 +13,14 @@ import Slider from './ReactSlider/Slider';
 
 function App() {
   const photos = [
-  'https://parikramaengineering.com/wp-content/uploads/2019/05/get_in_touch_bg.jpg',
-  'https://www.myfirstcollege.com/wp-content/uploads/2019/04/PARI-BUILDING.jpg',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSUceVUmDp1G0GjHULbpZfLIEdKN4mGVSzZhA&usqp=CAU',
-  'https://images.jdmagicbox.com/comp/ahmednagar/y7/9999px241.x241.110104121919.p6y7/catalogue/vishwabharati-academy-s-college-of-engineering-jamkhed-road-ahmednagar-colleges-ll0t3yo.jpg'
+  'https://images.unsplash.com/photo-1516918656725-e9b3ae9ee7a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
+  'https://media.boingboing.net/wp-content/uploads/2018/12/Screen-Shot-2018-12-19-at-10.35.29-AM.jpg',
+  'https://wallpaperaccess.com/full/405435.jpg',
+  'https://images.pexels.com/photos/709552/pexels-photo-709552.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
 ]  
   return (
     <div className="App">
-      <Slider slides={photos} height='50vh' autoplay={0} /> 
+      <Slider slides={photos} height='50vh' autoplay={2} /> 
       {/* <IntervalCounter /> */}
       {/* <MouseContainer /> */}
       {/* <HookMounts /> */}

@@ -63,7 +63,7 @@ const Slider = ({slides, height, width, autoplay}) => {
     
       useEffect(() => {
         if (transition === 0) setState({ ...state, transition: 0.45 })
-      }, [transition])
+      }, [transition, state])
 
     useEffect(() => {
         const play = () => {
