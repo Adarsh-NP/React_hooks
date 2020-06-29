@@ -5,7 +5,7 @@ import Slide from './Slide'
 import Arrow from './Arrow'
 import Dots from './Dots'
 
-const Slider = ({slides, height, width, autoplay}) => {
+const Slider = ({slides, height, width, autoplay, textdata}) => {
 
     const getWidth = () => window.innerWidth
 
@@ -120,6 +120,10 @@ const Slider = ({slides, height, width, autoplay}) => {
                     <Slide key={slide + i} content={slide}></Slide>
                 ))}
             </SliderContent>
+            <SliderFixed></SliderFixed>
+                <TextBox>
+                    {textdata}
+                </TextBox>
             {!autoplay && (
                 <>
                     <Arrow direction='left' handleClick={prevSlide}></Arrow>
@@ -144,4 +148,29 @@ const SliderMain = styled.div`
     width: ${props => props.width ? props.width : '100vw'};
     margin: 0 auto;
     overflow: hidden;
+`
+
+const SliderFixed = styled.div`
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0px;
+    left: 50%;
+    display: flex;
+    background: rgba(199, 31, 22, 0.6);;
+    clip-path: polygon(3rem 0, 100% 0, 100% 100%, 0 100%);
+`
+const TextBox = styled.div`
+    height: 40%;
+    position: absolute;
+    width: 50%;
+    top: 30%;
+    right:0px;
+    background-color: white;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 5%;
+    padding-left: 5%;
 `

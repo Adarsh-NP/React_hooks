@@ -22,10 +22,10 @@ export default Dots
 
 const Dotdiv = styled.div`
     padding: 5px;
-    margin-right: 5px;
+    margin-right: 8px;
     cursor: pointer;
     border-radius: 50%;
-    background: ${props => props.active ? 'black' : 'white'};
+    background: ${props => props.active ? 'red' : 'white'};
 `
 
 const Dotsdiv = styled.div`
