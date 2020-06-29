@@ -27,15 +27,6 @@ function App() {
       {/* Its super customizable, add height and width according to your needs, don't turn off autoplay because that's not required here.
       Want to add a new image, simply add the url in the images array.
       Want to change the text, simply change the parikramaMessage variable */}
-      {/* <IntervalCounter /> */}
-      {/* <MouseContainer /> */}
-      {/* <HookMounts /> */}
-      {/* <HookCounter1 /> */}
-      {/* <Hookcounter4 />
-      <Hookcounter3 />
-      <Hookcounte2 />
-      <ClassCounter />
-      <CounterHooks /> */}
     </div>
   );
 }
